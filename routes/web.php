@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 //Route main page
 Route::get('/', [PhotoController::class,'index']);
-//Route that display the photo form
-Route::get('/photos/new', [PhotoController::class, 'create']);
+//Route to display the photo form
+Route::get('/photos/new', [PhotoController::class,'create']);
+//Route to display the edit form
+Route::get('/photos/edit/{id}', [PhotoController::class,'edit']);
 
-//Route that inserts in database a new photo
+//Route to insert in database a new photo
 Route::post('/photos',[PhotoController::class,'store']);
+
+//Route to update an photo in database
+Route::put('/photos/{id}', [PhotoController::class,'update']);
