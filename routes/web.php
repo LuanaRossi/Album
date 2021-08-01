@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 //Route main page
 Route::get('/', [PhotoController::class,'index']);
+
+//Route to display the user photos
+Route::get('/photos', [PhotoController::class,'showAll']);
+
 //Route to display the photo form
 Route::get('/photos/new', [PhotoController::class,'create']);
 //Route to display the edit form

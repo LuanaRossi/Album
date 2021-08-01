@@ -90,10 +90,10 @@
               </div><!-- End of Inputs Column -->
             </div><!-- End of Row -->
           </form><!-- End of Form -->
-        </div><!-- End of card-body -->
-      </div><!-- End of card -->
+        </div><!-- End of Card-body -->
+      </div><!-- End of Card -->
 
-    </div><!-- End of card-form column -->
+    </div><!-- End of Card-form column -->
   </div><!-- End of Row -->
 
 </div><!-- End of Container -->
