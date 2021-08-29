@@ -28,5 +28,8 @@ Route::get('/photos/edit/{id}', [PhotoController::class,'edit']);
 //Route to insert in database a new photo
 Route::post('/photos',[PhotoController::class,'store']);
 
-//Route to update an photo in database
+//Route to update a photo from database
 Route::put('/photos/{id}', [PhotoController::class,'update']);
+
+//Route to delete a photo from database
+Route::delete('/photos/{id}', [PhotoController::class, 'destroy']);

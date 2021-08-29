@@ -30,20 +30,23 @@
             </thead>
             <tbody>
               @foreach ($photos as $photo)
-              <tr class="align-middle">
-                <td>{{$photo->id}}</td>
-                <td>
-                  <img width="200" class="img-thumbnail" src="https://www.osmais.com/wallpapers/201209/dia-de-chuva-wallpaper.jpg" alt="">
-                </td>
-                <td>{{$photo->title}}</td>
-                <td>{{$photo->date}}</td>
-                <td>
-                  <a href="/photos/edit/{{$photo->id}}" class="btn btn-secondary">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                </td>
-              </tr>
+                <tr class="align-middle">
+                  <td>{{$photo->id}}</td>
+                  <td>
+                    <img width="200" class="img-thumbnail" style="object-fit: cover; height: 116px"  src="{{url("/storage/photos/$photo->photo_url")}}" alt="">
+                  </td>
+                  <td>{{$photo->title}}</td>
+                  <td>{{$photo->date}}</td>
+                  <td>
+                    <a href="/photos/edit/{{$photo->id}}" class="btn btn-secondary">
+                      <i class="fas fa-edit"></i>
+                    </a>
+
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal" data-photo-id="{{$photo->id}}">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
               @endforeach
             </tbody>
           </table>
@@ -52,5 +55,33 @@
     </div><!-- End of Column -->
     </div><!-- End of Row -->
   </div><!-- End of Container -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atenção!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Deseja mesmo excluir esta foto?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não! Eu gosto dela!</button>
+          <form action="/photos/" method="POST" id="formDeletePhoto">
+            @method('DELETE')
+            @csrf
+            <button class="btn btn-danger" type="submit">
+              Sim
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Custom Script -->
+<script src="{{asset('/js/script.js')}}"></script>
 
 @endsection
